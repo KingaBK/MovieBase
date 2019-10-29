@@ -1,0 +1,8 @@
+# Environment
+venv/
+
+# Intellij
+.idea/
+
+# Python
+*.pyc
