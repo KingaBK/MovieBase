@@ -15,5 +15,10 @@ Including another URLconf
 """
 from django.urls import path
 
+from app.views import MovieCollection, CommentCollection, TopResource
+
 urlpatterns = [
+    path('movies', MovieCollection.as_view()),
+    path('comments', CommentCollection.as_view()),
+    path('top', TopResource.as_view()),
 ]
