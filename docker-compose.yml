@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    db:
+        image: mysql:latest
+        restart: always
+        entrypoint: ['/entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+        environment:
+            MYSQL_ROOT_PASSWORD: docker
+            MYSQL_DATABASE: movie_base
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: docker
+        ports:
+            - '3306:3306'
+    web:
+        restart: always
+        build:
+            context: .
+            dockerfile: docker/app.docker
+        command: >
+            sh -c "python manage.py migrate &&
+                   python manage.py runserver 0.0.0.0:8000"
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
