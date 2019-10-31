@@ -11,6 +11,8 @@ WORKDIR /code
 
 COPY requirements.txt /code/requirements.txt
 
+ADD . /code/
+
 RUN chown -R $USER:$USER .
 
 RUN apt-get update
