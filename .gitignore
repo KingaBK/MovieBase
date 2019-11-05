@@ -1,8 +1,12 @@
 # Environment
 venv/
+.env
 
 # Intellij
 .idea/
 
 # Python
 *.pyc
+
+# Key
+*.pem

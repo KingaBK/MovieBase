@@ -5,10 +5,18 @@ from app import models
 
 
 class MovieSerializer(serializers.ModelSerializer):
+    genre = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Movie
-        exclude = ("id",)
+        fields = ('movie_id', 'title', 'year', 'runtime', 'director', 'genre')
+
+    def get_genre(self, obj):
+        genre_names = []
+        for g in obj.genre.all():
+            genre_names.append(g.name)
+
+        return ", ".join(genre_names)
 
 
 class CommentSerializer(serializers.ModelSerializer):

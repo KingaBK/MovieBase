@@ -11,7 +11,7 @@ WORKDIR /code
 
 COPY requirements.txt /code/requirements.txt
 
-ADD . /code/
+#ADD . /code/
 
 RUN chown -R $USER:$USER .
 

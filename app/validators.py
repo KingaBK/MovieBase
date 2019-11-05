@@ -18,7 +18,7 @@ class MoviePostValidator:
 class MovieGetValidator:
     def __call__(self, request: Request):
         for q in request.query_params:
-            if q not in ["year", "runtime", "director"]:
+            if q not in ["year", "runtime", "director", "genre"]:
                 raise ValidationError("Field {} not allowed in query.".format(q))
 
 
@@ -59,11 +59,6 @@ class CommentGetValidator:
 
 class TopGetValidator:
     def __call__(self, request: Request):
-        if "date_range" not in request.query_params:
-            raise ValidationError("Date range not given.")
-
-        date_range = request.query_params["date_range"]
-
-        # TODO Define required date range format
-        if not date_range:
-            raise ValidationError("Incorrect format of date range.")
+        for q in request.query_params:
+            if q not in ["start_date", "end_date"]:
+                raise ValidationError("Field {} not allowed in query.".format(q))
